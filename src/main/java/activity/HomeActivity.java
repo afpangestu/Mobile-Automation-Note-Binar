@@ -27,6 +27,10 @@ public class HomeActivity {
     // locator edit note
     By editCatatanTxt = By.id("com.kazakimaru.ch04_ajifauzipangestu:id/title_dialog");
     By perbaruiBtn = By.id("com.kazakimaru.ch04_ajifauzipangestu:id/btn_add_update");
+    // locator delete note
+    By deleteAlert = By.id("android:id/alertTitle");
+    By deleteCancelBtn = By.id("android:id/button2");
+    By deleteYesBtn = By.id("android:id/button1");
 
     // methods
     public boolean welcomeTxt() {
@@ -81,5 +85,17 @@ public class HomeActivity {
 
     public void clickPerbarui() {
         driver.findElement(perbaruiBtn).click();
+    }
+
+    public boolean deleteAlertDisplayed() {
+        return driver.findElement(deleteAlert).isDisplayed();
+    }
+
+    public void clickDeleteCancelBtn() {
+        driver.findElement(deleteCancelBtn).click();
+    }
+
+    public void clickDeleteYesBtn() {
+        driver.findElement(deleteYesBtn).click();
     }
 }
