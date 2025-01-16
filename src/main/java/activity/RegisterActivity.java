@@ -11,6 +11,7 @@ public class RegisterActivity {
     }
 
     // locator
+    By registerTitleTxt = By.xpath("//android.widget.TextView[@text='Register']");
     By usernameEt = By.xpath("//android.widget.EditText[@text='Username']");
     By emailEt = By.xpath("//android.widget.EditText[@text='Email']");
     By passwordEt = By.xpath("//android.widget.EditText[@text='Password']");
@@ -40,5 +41,9 @@ public class RegisterActivity {
     public void setConfirmPassword(String confirmPassword) {
         driver.findElement(confirmPassEt).clear();
         driver.findElement(confirmPassEt).sendKeys(confirmPassword);
+    }
+
+    public boolean registerTitle() {
+        return driver.findElement(registerTitleTxt).isDisplayed();
     }
 }

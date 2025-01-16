@@ -12,6 +12,7 @@ public class LoginActivity {
     }
 
     // locator
+    By loginTitleTxt = By.xpath("//android.widget.TextView[@text='Login']");
     By registerBtn = By.id("com.kazakimaru.ch04_ajifauzipangestu:id/txt_daftar");
     By loginBtn = By.id("com.kazakimaru.ch04_ajifauzipangestu:id/btn_login");
     By usernameEt = By.xpath("//android.widget.EditText[@text='Username']");
@@ -34,5 +35,9 @@ public class LoginActivity {
     public void setPassword(String password) {
         driver.findElement(passwordEt).clear();
         driver.findElement(passwordEt).sendKeys(password);
+    }
+
+    public boolean loginTitle() {
+        return driver.findElement(loginTitleTxt).isDisplayed();
     }
 }
