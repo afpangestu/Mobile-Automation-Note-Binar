@@ -26,12 +26,60 @@ public class HomeActivity {
     By deleteBtn = By.xpath("(//android.widget.ImageView[@resource-id='com.kazakimaru.ch04_ajifauzipangestu:id/btn_delete'])[1]");
     // locator edit note
     By editCatatanTxt = By.id("com.kazakimaru.ch04_ajifauzipangestu:id/title_dialog");
-    By editJudulEt = By.xpath("//android.widget.EditText[@hint='Judul']");
-    By editCatatanEt = By.xpath("//android.widget.EditText[@hint='Catatan']");
     By perbaruiBtn = By.id("com.kazakimaru.ch04_ajifauzipangestu:id/btn_add_update");
 
     // methods
     public boolean welcomeTxt() {
         return driver.findElement(welcomeTxt).isDisplayed();
+    }
+
+    public boolean homeTxt() {
+        return driver.findElement(homeTxt).isDisplayed();
+    }
+
+    public void clickLogout() {
+        driver.findElement(logoutBtn).click();
+    }
+
+    public void clickAddNote() {
+        driver.findElement(addNoteBtn).click();
+    }
+
+    public boolean listNoteDisplayed() {
+        return driver.findElement(listNote).isDisplayed();
+    }
+
+    public boolean tambahCatatanTxtDisplayed() {
+        return driver.findElement(tambahCatatanTxt).isDisplayed();
+    }
+
+    public void setJudulEt(String judul) {
+        driver.findElement(judulEt).clear();
+        driver.findElement(judulEt).sendKeys(judul);
+    }
+
+    public void setCatatanEt(String catatan) {
+        driver.findElement(catatanEt).clear();
+        driver.findElement(catatanEt).sendKeys(catatan);
+    }
+
+    public void clickSimpan() {
+        driver.findElement(simpanBtn).click();
+    }
+
+    public void clickEdit() {
+        driver.findElement(editBtn).click();
+    }
+
+    public void clickDelete() {
+        driver.findElement(deleteBtn).click();
+    }
+
+    public boolean editCatatanTxtDisplayed() {
+        return driver.findElement(editCatatanTxt).isDisplayed();
+    }
+
+    public void clickPerbarui() {
+        driver.findElement(perbaruiBtn).click();
     }
 }

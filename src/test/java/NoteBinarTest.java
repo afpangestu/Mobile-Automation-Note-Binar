@@ -66,8 +66,10 @@ public class NoteBinarTest {
     }
 
     @AfterTest
-    public void endTest() {
-       driver.quit();
+    public void quit() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 }
