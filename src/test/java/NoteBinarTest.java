@@ -41,7 +41,7 @@ public class NoteBinarTest {
     }
 
     @Test(priority = 1)
-    public void testRegister() {
+    public void testRegister() throws InterruptedException {
         login = new LoginActivity(driver);
         register = new RegisterActivity(driver);
         // navigate to register activity
@@ -55,6 +55,7 @@ public class NoteBinarTest {
         register.setConfirmPassword("ajifauzi123");
         register.clickRegister();
         // assertion
+        Thread.sleep(2000);
         Assert.assertTrue(login.loginTitle());
     }
 
