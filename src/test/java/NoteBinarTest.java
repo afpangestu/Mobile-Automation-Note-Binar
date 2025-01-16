@@ -1,7 +1,7 @@
+import activity.LoginActivity;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,8 +11,8 @@ import java.net.URL;
 
 
 public class NoteBinarTest {
-    public static DesiredCapabilities capabilities;
     public static AppiumDriver driver;
+    public static LoginActivity loginActivity;
     public static UiAutomator2Options options;
     public static String baseUrl = "http://127.0.0.1:4723";
 
@@ -29,6 +29,8 @@ public class NoteBinarTest {
 
     @Test
     public void testLogin() {
+        loginActivity = new LoginActivity(driver);
+
         driver.findElement(By.xpath("//android.widget.EditText[@text='Username']")).sendKeys("ajifauzi");
         driver.findElement(By.xpath("//android.widget.EditText[@text='Password']")).sendKeys("ajifauzi123");
         driver.findElement(By.id("com.kazakimaru.ch04_ajifauzipangestu:id/btn_login")).click();
