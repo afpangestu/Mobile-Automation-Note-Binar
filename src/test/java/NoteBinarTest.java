@@ -1,3 +1,4 @@
+import activity.HomeActivity;
 import activity.LoginActivity;
 import activity.RegisterActivity;
 import io.appium.java_client.AppiumDriver;
@@ -18,6 +19,7 @@ public class NoteBinarTest {
     public static AppiumDriver driver;
     public static LoginActivity login;
     public static RegisterActivity register;
+    public static HomeActivity home;
     public static UiAutomator2Options options;
     public static String baseUrl = "http://127.0.0.1:4723";
 
@@ -33,11 +35,15 @@ public class NoteBinarTest {
     }
 
     @Test(priority = 2)
-    public void testLogin() {
+    public void testLogin() throws InterruptedException {
+        home = new HomeActivity(driver);
         login = new LoginActivity(driver);
         login.setUsername("ajifauzi");
         login.setPassword("ajifauzi123");
         login.clickLogin();
+        Thread.sleep(2000);
+        // assertion
+        Assert.assertTrue(home.welcomeTxt());
     }
 
     @Test(priority = 1)
