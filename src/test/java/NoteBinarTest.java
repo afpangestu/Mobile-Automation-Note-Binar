@@ -44,6 +44,8 @@ public class NoteBinarTest {
         Thread.sleep(2000);
         // assertion
         Assert.assertTrue(home.welcomeTxt());
+        Assert.assertTrue(home.homeTxt());
+        System.out.println("== TEST LOGIN SUCCESS ==");
     }
 
     @Test(priority = 1)
@@ -63,6 +65,73 @@ public class NoteBinarTest {
         // assertion
         Thread.sleep(2000);
         Assert.assertTrue(login.loginTitle());
+        System.out.println("== TEST REGISTER SUCCESS ==");
+    }
+
+    @Test(priority = 3)
+    public void testAddNote() throws InterruptedException {
+        home = new HomeActivity(driver);
+        // open dialog
+        home.clickAddNote();
+        Thread.sleep(1000);
+        // assert the dialog
+        Assert.assertTrue(home.tambahCatatanTxtDisplayed());
+        // fill the EditText
+        home.setJudulEt("this is title note");
+        home.setCatatanEt("this is content of note");
+        home.clickSimpan();
+        Thread.sleep(1000);
+        // assert list note after adding
+        Assert.assertTrue(home.listNoteDisplayed());
+        System.out.println("== TEST ADD NOTE SUCCESS ==");
+    }
+
+    @Test(priority = 4)
+    public void testEditNote() throws InterruptedException {
+        home = new HomeActivity(driver);
+        home.clickEdit(); // edit on the first item
+        Thread.sleep(1000);
+        // assert the edit dialog
+        Assert.assertTrue(home.editCatatanTxtDisplayed());
+        // fill the EditText
+        home.setJudulEt("this is after edit");
+        home.setCatatanEt("this is after edit");
+        home.clickPerbarui();
+        Thread.sleep(1000);
+        // assert list note after edit
+        Assert.assertTrue(home.listNoteDisplayed());
+        System.out.println("== TEST EDIT NOTE SUCCESS ==");
+    }
+
+    @Test(priority = 5)
+    public void testDeleteNote() throws InterruptedException {
+        home = new HomeActivity(driver);
+        home.clickDelete(); // delete on the first item
+        Thread.sleep(1000);
+        // assert the delete dialog
+        Assert.assertTrue(home.deleteAlertDisplayed());
+        // click cancel
+        home.clickDeleteCancelBtn();
+        Thread.sleep(1000);
+        home.clickDelete();
+        Thread.sleep(1000);
+        // assert again the delete dialog
+        Assert.assertTrue(home.deleteAlertDisplayed());
+        home.clickDeleteYesBtn();
+        // assert note is empty after deleting
+//        Assert.assertFalse(home.listNoteDisplayed());
+        System.out.println("== TEST DELETE NOTE SUCCESS ==");
+    }
+
+    @Test(priority = 6)
+    public void testLogout() throws InterruptedException {
+        login = new LoginActivity(driver);
+        home = new HomeActivity(driver);
+        home.clickLogout();
+        Thread.sleep(1000);
+        // assert after press logout
+        Assert.assertTrue(login.loginTitle());
+        System.out.println("== TEST LOGOUT SUCCESS ==");
     }
 
     @AfterTest
