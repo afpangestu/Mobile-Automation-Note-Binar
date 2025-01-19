@@ -11,7 +11,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.Duration;
 
 
@@ -25,14 +26,14 @@ public class NoteBinarTest {
     public static String baseUrl = "http://127.0.0.1:4723";
 
     @BeforeTest
-    public  void setup() throws MalformedURLException {
+    public  void setup() throws URISyntaxException, MalformedURLException {
         options = new UiAutomator2Options();
         options.setDeviceName("Pixel 9 Pro")
                 .setApp("src/test/java/apk/Note_Binar-debug.apk") // running appium in Terminal of IDE
                 .setPlatformVersion("14")
                 .setPlatformName("Android");
 
-        driver = new AppiumDriver(new URL(baseUrl), options);
+        driver = new AppiumDriver(new URI(baseUrl).toURL(), options);
         // wait for elements using implicit wait (without plugin "element-wait")
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
