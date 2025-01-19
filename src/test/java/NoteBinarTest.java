@@ -28,7 +28,7 @@ public class NoteBinarTest {
     public  void setup() throws MalformedURLException {
         options = new UiAutomator2Options();
         options.setDeviceName("Pixel 9 Pro")
-                .setApp("src/test/java/apk/Note_Binar-debug.apk") // use this if you running appium in Terminal of IDE
+                .setApp("src/test/java/apk/Note_Binar-debug.apk") // running appium in Terminal of IDE
                 .setPlatformVersion("14")
                 .setPlatformName("Android");
 
