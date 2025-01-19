@@ -33,7 +33,7 @@ public class NoteBinarTest {
                 .setPlatformName("Android");
 
         driver = new AppiumDriver(new URL(baseUrl), options);
-        // implicit wait without plugin "element-wait"
+        // wait for elements using implicit wait (without plugin "element-wait")
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
