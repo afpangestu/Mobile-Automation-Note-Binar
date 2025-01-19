@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 
 public class NoteBinarTest {
@@ -32,16 +33,17 @@ public class NoteBinarTest {
                 .setPlatformName("Android");
 
         driver = new AppiumDriver(new URL(baseUrl), options);
+        // implicit wait without plugin "element-wait"
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test(priority = 2)
-    public void testLogin() throws InterruptedException {
+    public void testLogin() {
         home = new HomeActivity(driver);
         login = new LoginActivity(driver);
         login.setUsername("ajifauzi");
         login.setPassword("ajifauzi123");
         login.clickLogin();
-        Thread.sleep(2000);
         // assertion
         Assert.assertTrue(home.welcomeTxt());
         Assert.assertTrue(home.homeTxt());
@@ -49,7 +51,7 @@ public class NoteBinarTest {
     }
 
     @Test(priority = 1)
-    public void testRegister() throws InterruptedException {
+    public void testRegister() {
         login = new LoginActivity(driver);
         register = new RegisterActivity(driver);
         // navigate to register activity
@@ -63,58 +65,50 @@ public class NoteBinarTest {
         register.setConfirmPassword("ajifauzi123");
         register.clickRegister();
         // assertion
-        Thread.sleep(2000);
         Assert.assertTrue(login.loginTitle());
         System.out.println("== TEST REGISTER SUCCESS ==");
     }
 
     @Test(priority = 3)
-    public void testAddNote() throws InterruptedException {
+    public void testAddNote() {
         home = new HomeActivity(driver);
         // open dialog
         home.clickAddNote();
-        Thread.sleep(1000);
         // assert the dialog
         Assert.assertTrue(home.tambahCatatanTxtDisplayed());
         // fill the EditText
         home.setJudulEt("this is title note");
         home.setCatatanEt("this is content of note");
         home.clickSimpan();
-        Thread.sleep(1000);
         // assert list note after adding
         Assert.assertTrue(home.listNoteDisplayed());
         System.out.println("== TEST ADD NOTE SUCCESS ==");
     }
 
     @Test(priority = 4)
-    public void testEditNote() throws InterruptedException {
+    public void testEditNote() {
         home = new HomeActivity(driver);
         home.clickEdit(); // edit on the first item
-        Thread.sleep(1000);
         // assert the edit dialog
         Assert.assertTrue(home.editCatatanTxtDisplayed());
         // fill the EditText
-        home.setJudulEt("this is after edit");
-        home.setCatatanEt("this is after edit");
+        home.setJudulEt("this judul is after edit");
+        home.setCatatanEt("this catatan is after edit");
         home.clickPerbarui();
-        Thread.sleep(1000);
         // assert list note after edit
         Assert.assertTrue(home.listNoteDisplayed());
         System.out.println("== TEST EDIT NOTE SUCCESS ==");
     }
 
     @Test(priority = 5)
-    public void testDeleteNote() throws InterruptedException {
+    public void testDeleteNote() {
         home = new HomeActivity(driver);
         home.clickDelete(); // delete on the first item
-        Thread.sleep(1000);
         // assert the delete dialog
         Assert.assertTrue(home.deleteAlertDisplayed());
         // click cancel
         home.clickDeleteCancelBtn();
-        Thread.sleep(1000);
         home.clickDelete();
-        Thread.sleep(1000);
         // assert again the delete dialog
         Assert.assertTrue(home.deleteAlertDisplayed());
         home.clickDeleteYesBtn();
@@ -124,11 +118,10 @@ public class NoteBinarTest {
     }
 
     @Test(priority = 6)
-    public void testLogout() throws InterruptedException {
+    public void testLogout() {
         login = new LoginActivity(driver);
         home = new HomeActivity(driver);
         home.clickLogout();
-        Thread.sleep(1000);
         // assert after press logout
         Assert.assertTrue(login.loginTitle());
         System.out.println("== TEST LOGOUT SUCCESS ==");
