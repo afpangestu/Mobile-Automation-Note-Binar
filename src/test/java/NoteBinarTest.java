@@ -3,8 +3,6 @@ import activity.LoginActivity;
 import activity.RegisterActivity;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -17,7 +15,6 @@ import java.time.Duration;
 
 
 public class NoteBinarTest {
-    private static final Logger log = LoggerFactory.getLogger(NoteBinarTest.class);
     public static AppiumDriver driver;
     public static LoginActivity login;
     public static RegisterActivity register;
